@@ -1,0 +1,10 @@
+min_version = '2025.4.2'
+
+[tools]
+node = "lts"
+
+[tasks]
+build = "npm run build"
+ci = "npm ci && npm rum build"
+dev = "npm run dev"
+setup = "npm install"
