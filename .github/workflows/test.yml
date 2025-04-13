@@ -17,4 +17,5 @@ jobs:
           install: true # [default: true] run `mise install`
           cache: true # [default: true] cache mise using GitHub's cache
 
-      - run: node -v
+      - run: mise run setup
+      - run: mise run build

@@ -4,4 +4,6 @@ min_version = '2025.4.2'
 node = "lts"
 
 [tasks]
+build = "npm run build"
+dev = "npm run dev"
 setup = "npm install"

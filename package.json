@@ -1,0 +1,26 @@
+{
+  "name": "@maxbeatty/blog",
+  "version": "1.0.0",
+  "description": "Max Beatty's Blog",
+  "main": "index.js",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxbeatty/blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxbeatty/blog/issues"
+  },
+  "homepage": "https://github.com/maxbeatty/blog#readme",
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.6.1",
+    "typescript": "^5.8.3"
+  }
+}

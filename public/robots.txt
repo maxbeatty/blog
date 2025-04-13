@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# TODO: Sitemap: https://maxbeatty.com/sitemap.xml
