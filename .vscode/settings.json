@@ -1,0 +1,10 @@
+{
+    "json.schemas": [
+    {
+      "fileMatch": [
+        "/mise.toml"
+      ],
+      "url": "https://mise.jdx.dev/schema/mise.json"
+    }
+  ]
+}

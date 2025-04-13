@@ -1,0 +1,7 @@
+min_version = '2025.4.2'
+
+[tools]
+node = "lts"
+
+[tasks]
+setup = "npm install"
