@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro check && astro build",
-    "preview": "astro preview"
+    "preview": "astro build && wrangler pages dev ./dist"
   },
   "repository": {
     "type": "git",

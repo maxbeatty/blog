@@ -17,3 +17,7 @@ See [Astro's development and build docs](https://docs.astro.build/en/develop-and
 
 - Develop: `mise run dev`
 - Build: `mise run build`
+
+## Deployment
+
+Astro is deployed to [Cloudflare Pages](https://developers.cloudflare.com/pages/) using their [git integration](https://developers.cloudflare.com/pages/get-started/git-integration/)
