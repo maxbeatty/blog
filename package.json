@@ -8,6 +8,7 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
+    "new-post": "node scripts/new-post.mjs",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "preview": "astro preview",
