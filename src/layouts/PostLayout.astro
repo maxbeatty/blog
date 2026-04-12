@@ -1,0 +1,77 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+const { title, date, categories, tags } = post.data;
+const formattedDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<BaseLayout title={title}>
+  <article>
+    <header>
+      <h1>{title}</h1>
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+      {
+        categories.length > 0 && (
+          <span>
+            {" "}
+            &middot;{" "}
+            {categories.map((c, i) => (
+              <>
+                {i > 0 && ", "}
+                {c}
+              </>
+            ))}
+          </span>
+        )
+      }
+    </header>
+    <slot />
+    {
+      tags.length > 0 && (
+        <footer>
+          <p>
+            Tags:{" "}
+            {tags.map((t, i) => (
+              <>
+                {i > 0 && ", "}
+                {t}
+              </>
+            ))}
+          </p>
+        </footer>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  header {
+    margin-bottom: 2rem;
+  }
+  h1 {
+    margin-bottom: 0.25rem;
+  }
+  time {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  header span {
+    color: #666;
+    font-size: 0.875rem;
+  }
+  footer {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: #666;
+  }
+</style>

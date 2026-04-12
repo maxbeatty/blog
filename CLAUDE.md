@@ -22,11 +22,17 @@ Uses [mise](https://mise.jdx.dev) for tool version management. Run `mise install
 
 ## Architecture
 
-Astro project with standard directory structure:
+Astro 6 blog migrated from WordPress. Statically built and deployed to Cloudflare.
 
-- `src/pages/` — file-based routing
-- `public/` — static assets served as-is
-- `astro.config.mjs` — Astro configuration
+- `src/content.config.ts` — content collection schema (posts)
+- `src/content/posts/` — 719 Markdown blog posts with YAML frontmatter
+- `src/pages/[...slug].astro` — dynamic catch-all route for posts (uses `getStaticPaths`)
+- `src/pages/` — static pages (index, about, contact)
+- `src/layouts/` — BaseLayout and PostLayout
+- `public/media/` — images and media files organized by year/month
+- `astro.config.mjs` — Astro configuration (site, trailingSlash, sitemap)
+
+Posts use a `slug` frontmatter property for URL routing: `/YYYY/MM/DD/post-slug/`
 
 ## CI
 
