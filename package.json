@@ -1,29 +1,21 @@
 {
   "name": "@maxbeatty/blog",
   "version": "1.0.0",
+  "private": true,
   "description": "Max Beatty's Blog",
-  "main": "index.js",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro build && wrangler pages dev ./dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/maxbeatty/blog.git"
-  },
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/maxbeatty/blog/issues"
+  "type": "module",
+  "scripts": {
+    "prettier": "prettier --check .",
+    "prettier:fix": "prettier --write ."
   },
-  "homepage": "https://github.com/maxbeatty/blog#readme",
-  "dependencies": {
-    "@astrojs/check": "^0.9.5",
-    "astro": "^5.7.13",
-    "typescript": "^5.9.3"
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-packagejson"
+    ]
   },
   "devDependencies": {
-    "wrangler": "^4.46.0"
+    "prettier": "^3.8.2",
+    "prettier-plugin-packagejson": "^3.0.2"
   }
 }
