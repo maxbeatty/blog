@@ -9,15 +9,26 @@
 
 ### Routinely
 
-1. Setup: `mise run setup`
+1. Install dependencies: `npm install`
 
 ## Development
 
-See [Astro's development and build docs](https://docs.astro.build/en/develop-and-build/)
+Start the local development server:
 
-- Develop: `mise run dev`
-- Build: `mise run build`
+```sh
+npm run dev
+```
 
-## Deployment
+## Test
 
-Astro is deployed to [Cloudflare Pages](https://developers.cloudflare.com/pages/) using their [git integration](https://developers.cloudflare.com/pages/get-started/git-integration/)
+Run the test suite:
+
+```sh
+npm run test
+```
+
+Build the site:
+
+```sh
+npm run build
+```

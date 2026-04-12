@@ -1,4 +1,7 @@
-mise.local.toml
 .astro/
+.claude/projects/
+.wrangler/
 dist/
 node_modules/
+playwright-report/
+test-results/
