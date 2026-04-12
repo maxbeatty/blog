@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import PostList from "../../components/PostList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { slugify } from "../../lib/slugify";
+
+export async function getStaticPaths() {
+
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+  const categoryMap = new Map<
+    string,
+    { name: string; posts: typeof posts }
+  >();
+  for (const post of posts) {
+    for (const category of post.data.categories) {
+      const slug = slugify(category);
+      if (!categoryMap.has(slug)) {
+        categoryMap.set(slug, { name: category, posts: [] });
+      }
+      categoryMap.get(slug)!.posts.push(post);
+    }
+  }
+
+  return [...categoryMap.entries()].map(([slug, { name, posts }]) => ({
+    params: { category: slug },
+    props: {
+      name,
+      posts: posts.sort(
+        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+      ),
+    },
+  }));
+}
+
+const { name, posts } = Astro.props;
+---
+
+<BaseLayout title={`${name} - Max Beatty`}>
+  <h1>{name}</h1>
+  <p><a href="/categories/">&larr; All categories</a></p>
+  <PostList posts={posts} />
+</BaseLayout>

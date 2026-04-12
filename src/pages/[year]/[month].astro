@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import PostList from "../../components/PostList.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+  const monthMap = new Map<string, { year: string; month: string; posts: typeof posts }>();
+  for (const post of posts) {
+    const year = String(post.data.date.getFullYear());
+    const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
+    const key = `${year}/${month}`;
+    if (!monthMap.has(key)) monthMap.set(key, { year, month, posts: [] });
+    monthMap.get(key)!.posts.push(post);
+  }
+
+  return [...monthMap.values()].map(({ year, month, posts }) => ({
+    params: { year, month },
+    props: {
+      year,
+      month,
+      label: posts[0].data.date.toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      }),
+      posts: posts.sort(
+        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+      ),
+    },
+  }));
+}
+
+const { year, label, posts } = Astro.props;
+---
+
+<BaseLayout title={`${label} - Max Beatty`}>
+  <h1>{label}</h1>
+  <p><a href={`/${year}/`}>&larr; All of {year}</a></p>
+  <PostList posts={posts} showYear={false} />
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  posts: CollectionEntry<"posts">[];
+  showYear?: boolean;
+}
+
+const { posts, showYear = true } = Astro.props;
+---
+
+<ul class="list-none p-0">
+  {
+    posts.map((post) => (
+      <li class="mb-2">
+        <time
+          datetime={post.data.date.toISOString()}
+          class="mr-2 text-sm tabular-nums text-gray-500"
+        >
+          {post.data.date.toLocaleDateString("en-US", {
+            year: showYear ? "numeric" : undefined,
+            month: "short",
+            day: "numeric",
+          })}
+        </time>
+        <a href={`/${post.id}/`}>{post.data.title}</a>
+      </li>
+    ))
+  }
+</ul>

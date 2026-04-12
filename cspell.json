@@ -1,0 +1,55 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "files": [
+    "src/content/posts/202[6-9]-*.md",
+    "src/content/posts/20[3-9][0-9]-*.md"
+  ],
+  "ignorePaths": ["node_modules", "dist"],
+  "allowCompoundWords": true,
+  "dictionaries": [
+    "en_US",
+    "softwareTerms",
+    "typescript",
+    "node",
+    "css",
+    "html"
+  ],
+  "words": [
+    "astro",
+    "beatty",
+    "bloomington",
+    "buyads",
+    "caitlin",
+    "cloudflare",
+    "conan",
+    "dotenv",
+    "euchre",
+    "foursquare",
+    "graphql",
+    "heroku",
+    "ifttt",
+    "infra",
+    "instapaper",
+    "isocket",
+    "macbook",
+    "macos",
+    "maxbeatty",
+    "nhan",
+    "passplum",
+    "serverless",
+    "sproutbox",
+    "tailwindcss",
+    "terraform",
+    "thrift",
+    "vimeo",
+    "zipcar"
+  ],
+  "ignoreRegExpList": [
+    "Urls",
+    "Email",
+    "/https?:\\/\\/\\S+/",
+    "/@\\w+/",
+    "/#\\w+/"
+  ]
+}

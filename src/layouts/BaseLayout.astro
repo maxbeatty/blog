@@ -1,0 +1,117 @@
+---
+import { getArchiveYears } from "../lib/archive";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: "website" | "article";
+  publishedTime?: Date;
+}
+
+const { title, description, image, type = "website", publishedTime } =
+  Astro.props;
+const archiveYears = await getArchiveYears();
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl.href} />
+    <link rel="icon" type="image/png" href="/favicon.ico" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Max Beatty"
+      href="/rss.xml"
+    />
+    <meta
+      name="google-site-verification"
+      content="pyNl6QLvSeVl9OTv1mIlVHW6InXJ-ESVXORWPAuP_SI"
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl.href} />
+    <meta property="og:site_name" content="Max Beatty" />
+    <meta property="og:locale" content="en_US" />
+    {description && <meta property="og:description" content={description} />}
+    {
+      image && (
+        <meta
+          property="og:image"
+          content={new URL(image, Astro.site).href}
+        />
+      )
+    }
+    <meta
+      name="twitter:card"
+      content={image ? "summary_large_image" : "summary"}
+    />
+    <meta name="twitter:site" content="@maxbeatty" />
+    <meta name="twitter:creator" content="@maxbeatty" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+  </head>
+  <body
+    class="mx-auto max-w-2xl px-4 py-4 font-sans leading-relaxed text-gray-900"
+  >
+    <nav class="mb-8 border-b border-gray-200 pb-2">
+      <a href="/" class="mr-4 text-blue-600 no-underline hover:underline"
+        >Home</a
+      >
+    </nav>
+    <main>
+      <slot />
+    </main>
+    <footer class="mt-12 border-t border-gray-200 pt-4 text-sm text-gray-500">
+      <div class="mb-3 flex flex-wrap items-center gap-4">
+        <a href="/about/" class="text-blue-600 no-underline hover:underline"
+          >About</a
+        >
+        <a
+          href="/categories/"
+          class="text-blue-600 no-underline hover:underline">Categories</a
+        >
+        <a href="/tags/" class="text-blue-600 no-underline hover:underline"
+          >Tags</a
+        >
+        <select
+          aria-label="Archive"
+          onchange="if(this.value)location.href=this.value"
+          class="rounded border border-gray-300 bg-white px-1 py-0.5 text-sm text-gray-500"
+        >
+          <option value="">Archive</option>
+          {
+            archiveYears.map(({ year, months }) => (
+              <optgroup label={year}>
+                <option value={`/${year}/`}>All of {year}</option>
+                {months.map(({ value, label }) => (
+                  <option value={value}>{label}</option>
+                ))}
+              </optgroup>
+            ))
+          }
+        </select>
+        <span class="text-gray-300">|</span>
+        <a
+          href="https://www.linkedin.com/in/maxbeatty/"
+          class="text-blue-600 no-underline hover:underline">LinkedIn</a
+        >
+        <a
+          href="https://github.com/maxbeatty"
+          class="text-blue-600 no-underline hover:underline">GitHub</a
+        >
+        <a
+          href="https://twitter.com/maxbeatty"
+          class="text-blue-600 no-underline hover:underline">X</a
+        >
+      </div>
+      <p>&copy; Max Beatty</p>
+    </footer>
+  </body>
+</html>

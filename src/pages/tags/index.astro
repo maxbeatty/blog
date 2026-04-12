@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { slugify } from "../../lib/slugify";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+const tagCounts = new Map<string, number>();
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
+const filteredTags = tags.filter(([tag]) => slugify(tag));
+---
+
+<BaseLayout title="Tags - Max Beatty">
+  <h1>Tags</h1>
+  <ul class="columns-2 list-none p-0">
+    {
+      filteredTags.map(([tag, count]) => (
+        <li class="mb-2">
+          <a href={`/tags/${slugify(tag)}/`}>{tag}</a>
+          <span class="text-sm text-gray-500">({count})</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
