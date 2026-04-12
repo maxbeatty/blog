@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+
+const categoryCounts = new Map<string, number>();
+for (const post of posts) {
+  for (const category of post.data.categories) {
+    categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
+  }
+}
+
+const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
+
+function slugify(str: string) {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+---
+
+<BaseLayout title="Categories - Max Beatty">
+  <h1>Categories</h1>
+  <ul>
+    {
+      categories.map(([category, count]) => (
+        <li>
+          <a href={`/categories/${slugify(category)}/`}>{category}</a>
+          <span>({count})</span>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 0.5rem;
+  }
+  span {
+    color: #666;
+    font-size: 0.875rem;
+  }
+</style>
