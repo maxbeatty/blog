@@ -25,7 +25,11 @@ test("about page renders", async ({ page }) => {
   await expect(page.locator("h1")).toHaveText("About");
 });
 
-test("contact page renders", async ({ page }) => {
-  await page.goto("/contact/");
-  await expect(page.locator("h1")).toHaveText("Contact");
+test("footer has navigation links", async ({ page }) => {
+  await page.goto("/");
+  const footer = page.locator("footer");
+  await expect(footer.locator('a[href="/about/"]')).toBeVisible();
+  await expect(footer.locator('a[href="/categories/"]')).toBeVisible();
+  await expect(footer.locator('a[href="/tags/"]')).toBeVisible();
+  await expect(footer.locator("select")).toBeVisible();
 });

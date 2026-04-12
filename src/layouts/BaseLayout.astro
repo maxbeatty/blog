@@ -1,10 +1,13 @@
 ---
+import { getArchiveYears } from "../lib/archive";
+
 interface Props {
   title: string;
   description?: string;
 }
 
 const { title, description } = Astro.props;
+const archiveYears = await getArchiveYears();
 ---
 
 <html lang="en">
@@ -38,28 +41,74 @@ const { title, description } = Astro.props;
       nav a:hover {
         text-decoration: underline;
       }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
       footer {
         margin-top: 3rem;
-        padding-top: 0.5rem;
+        padding-top: 1rem;
         border-top: 1px solid #eee;
         font-size: 0.875rem;
         color: #666;
       }
-      img {
-        max-width: 100%;
-        height: auto;
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 0.75rem;
+      }
+      .footer-links a {
+        color: #0066cc;
+        text-decoration: none;
+      }
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+      .footer-links select {
+        font-size: 0.875rem;
+        padding: 0.15rem 0.25rem;
+        color: #666;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background: white;
+      }
+      .separator {
+        color: #ccc;
       }
     </style>
   </head>
   <body>
     <nav>
       <a href="/">Home</a>
-      <a href="/about/">About</a>
     </nav>
     <main>
       <slot />
     </main>
     <footer>
+      <div class="footer-links">
+        <a href="/about/">About</a>
+        <a href="/categories/">Categories</a>
+        <a href="/tags/">Tags</a>
+        <select aria-label="Archive" onchange="if(this.value)location.href=this.value">
+          <option value="">Archive</option>
+          {
+            archiveYears.map(({ year, months }) => (
+              <optgroup label={year}>
+                <option value={`/${year}/`}>All of {year}</option>
+                {months.map(({ value, label }) => (
+                  <option value={value}>{label}</option>
+                ))}
+              </optgroup>
+            ))
+          }
+        </select>
+        <span class="separator">|</span>
+        <a href="https://www.linkedin.com/in/maxbeatty/">LinkedIn</a>
+        <a href="https://github.com/maxbeatty">GitHub</a>
+        <a href="https://twitter.com/maxbeatty">X</a>
+      </div>
       <p>&copy; Max Beatty</p>
     </footer>
   </body>
