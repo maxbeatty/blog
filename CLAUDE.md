@@ -13,6 +13,8 @@ Personal blog built with Astro 6 and TypeScript (strictest mode).
 - `npm run preview` — preview production build locally
 - `npm run prettier` — check formatting
 - `npm run prettier:fix` — fix formatting
+- `npm run test` — run unit tests (vitest)
+- `npm run test:e2e` — run e2e tests (playwright, builds first)
 
 ## Setup
 
