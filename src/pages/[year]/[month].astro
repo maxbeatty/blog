@@ -24,7 +24,7 @@ export async function getStaticPaths() {
     props: {
       year,
       month,
-      label: posts[0].data.date.toLocaleDateString("en-US", {
+      label: posts[0]!.data.date.toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
       }),

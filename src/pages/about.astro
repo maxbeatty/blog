@@ -11,40 +11,41 @@ import SocialIcons from "../components/SocialIcons.astro";
     >
       <div class="lg:pl-20">
         <div class="max-w-xs px-2.5 lg:max-w-none">
-          <div
-            class="aspect-square rotate-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800"
-          >
-          </div>
+          <img
+            src="/profile.jpeg"
+            alt="Max Beatty"
+            class="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+          />
         </div>
       </div>
       <div class="lg:order-first lg:row-span-2">
         <h1
           class="text-4xl font-semibold tracking-tight text-zinc-800 sm:text-5xl text-balance dark:text-zinc-100"
         >
-          I'm Max Beatty. I live in San Francisco, where I build for the web.
+          About
         </h1>
         <div
           class="mt-6 space-y-7 text-base text-zinc-600 text-pretty dark:text-zinc-400"
         >
           <p>
             Howdy! I'm a software engineering leader based in San Francisco. I
-            enjoy wearing many hats to design and build products for the web from
+            enjoy wearing many hats to design and build products for the web and mobile from
             scratch.
           </p>
           <p>
-            Some of my past projects include <a
-              href="https://passplum.com/"
+            I'm currently leading engineering at <a href="https://poolmoney.com/" class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">Pool</a>, a collaborative checking account that offers effortless shared access, expense tracking, spending limits, and debit cards for everyone. Some of my past work includes <a
+              href="https://developers.cash.app/cash-app-pay-partner-api/guides/pay-kit-sdk/pay-kit-web-overview/pay-kit-benefits"
               class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
-              >Pass Plum</a
-            >, a password generator that creates memorable passphrases, and <a
-              href="https://github.com/motdotla/dotenv"
+              >Cash App Pay</a
+            >, a fast, free, and secure method to pay for purchases online, and <a
+              href="https://developer.squareup.com/docs/web-payments/overview"
               class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
-              >dotenv</a
-            >, one of the most widely used packages in the Node.js ecosystem.
+              >Square's Web Payments SDK</a
+            >, which provides a secure card entry method, along with other payment methods.
           </p>
           <p>
-            When I'm not coding, you can find me playing basketball, tennis, and
-            Euchre.
+            When I'm not coding, you can find me playing golf, basketball, tennis, or
+            Euchre 🃏
           </p>
         </div>
       </div>
@@ -52,14 +53,14 @@ import SocialIcons from "../components/SocialIcons.astro";
         <ul role="list">
           <li class="flex">
             <a
-              href="https://twitter.com/maxbeatty"
+              href="https://www.linkedin.com/in/maxbeatty/"
               class="group flex text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-500"
             >
               <SocialIcons
-                name="x"
+                name="linkedin"
                 class="size-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500"
               />
-              <span class="ml-4">Follow on X</span>
+              <span class="ml-4">Connect on LinkedIn</span>
             </a>
           </li>
           <li class="mt-4 flex">
@@ -75,15 +76,16 @@ import SocialIcons from "../components/SocialIcons.astro";
             </a>
           </li>
           <li class="mt-4 flex">
+
             <a
-              href="https://www.linkedin.com/in/maxbeatty/"
+              href="https://x.com/maxbeatty"
               class="group flex text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-500"
             >
               <SocialIcons
-                name="linkedin"
+                name="x"
                 class="size-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500"
               />
-              <span class="ml-4">Follow on LinkedIn</span>
+              <span class="ml-4">Follow on X</span>
             </a>
           </li>
         </ul>
