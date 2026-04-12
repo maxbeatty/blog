@@ -11,7 +11,6 @@ postFormat: image
 
 [fromme-toyou](http://fromme-toyou.tumblr.com/post/4528895445):
 
-> **Shave and a haircut…  
-> **
+> **Shave and a haircut...**
 >
 > _[Images of a Spring Weekend](http://bit.ly/gKuJCT), 71st and Lexington Avenue_

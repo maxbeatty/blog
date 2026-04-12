@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -36,35 +37,5 @@ const { year, label, posts } = Astro.props;
 <BaseLayout title={`${label} - Max Beatty`}>
   <h1>{label}</h1>
   <p><a href={`/${year}/`}>&larr; All of {year}</a></p>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-            })}
-          </time>
-          <a href={`/${post.id}/`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <PostList posts={posts} showYear={false} />
 </BaseLayout>
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    margin-bottom: 0.5rem;
-  }
-  time {
-    color: #666;
-    font-size: 0.875rem;
-    margin-right: 0.5rem;
-    font-variant-numeric: tabular-nums;
-  }
-</style>

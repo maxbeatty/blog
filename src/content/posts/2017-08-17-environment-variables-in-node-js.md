@@ -99,8 +99,8 @@ process.env.MY_OVERRIDE = parsed.MY_OVERRIDE;
 
 Some hosting providers like Heroku, ZEIT Now, and AWS Elastic Beanstalk will populate your environment with variables you configure so you don’t need a `.env` file. When a `.env` file is not found, `dotenv` quietly fails. There’s a minimal startup cost to your app, but if you’d rather not have `require("dotenv").config()` in your code, you can use [the](https://nodejs.org/api/cli.html#cli_r_require_module) `[--require](https://nodejs.org/api/cli.html#cli_r_require_module)`[command line option](https://nodejs.org/api/cli.html#cli_r_require_module) to preload `dotenv` when you need it.
 
-```
-$ node --require dotenv/config my-server.js
+```sh
+node --require dotenv/config my-server.js
 ```
 
 ### Debugging

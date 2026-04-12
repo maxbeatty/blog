@@ -1,0 +1,27 @@
+{
+  "globs": ["src/content/posts/**/*.md"],
+  "config": {
+    // Migrated posts have long lines
+    "MD013": false,
+    // Migrated link-format posts are bare URLs
+    "MD034": false,
+    // Posts contain inline HTML (audio, iframe, etc.)
+    "MD033": false,
+    // Frontmatter before first heading
+    "MD041": false,
+    // Migrated images often lack alt text
+    "MD045": false,
+    // Migrated list formatting uses 2 spaces after marker
+    "MD030": false,
+    // Migrated code blocks lack language specifiers
+    "MD040": false,
+    // Migrated trailing whitespace
+    "MD009": false,
+    // Migrated emphasis used as headings
+    "MD036": false,
+    // Migrated mixed emphasis style
+    "MD049": false,
+    // Migrated heading level jumps
+    "MD001": false,
+  },
+}

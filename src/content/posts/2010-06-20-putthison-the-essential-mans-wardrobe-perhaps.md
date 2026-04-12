@@ -17,7 +17,7 @@ postFormat: image
 >
 > I generally try not to respond to the questions that seem to be predicated on the assumption that a man should hate his clothes and want to spend as little time, effort and money as possible on them, so I’ve generally avoided the question.  Today, though, I’ll take a stab at it.
 >
-> Here are some essential elements of a man’s wardrobe.  This list assumes that you do not wear a suit and tie to work (if you do, I’d recommend Will’s list, [here](http://asuitablewardrobe.dynend.com/2006/11/suitable-wardrobe.html)). This is also not intended as a be-all, end-all.  I’d be happy to hear what you think is missing, or unnecessary.  I do think it’s an excellent starting point, however.
+> Here are some essential elements of a man’s wardrobe.  This list assumes that you do not wear a suit and tie to work (if you do, I’d recommend [Will’s list](http://asuitablewardrobe.dynend.com/2006/11/suitable-wardrobe.html)). This is also not intended as a be-all, end-all.  I’d be happy to hear what you think is missing, or unnecessary.  I do think it’s an excellent starting point, however.
 >
 > This wardrobe is useful not just for those starting out, but for those who want to simplify or those who wonder why it’s so hard for them to pack for travel.  These are all essential elements, and they are largely interchangeable.  Focus on very high quality and fit, and you will look great in them, even without accent pieces.
 >

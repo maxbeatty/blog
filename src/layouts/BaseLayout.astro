@@ -1,14 +1,17 @@
 ---
 import { getArchiveYears } from "../lib/archive";
+import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   type?: "website" | "article";
+  publishedTime?: Date;
 }
 
-const { title, description, image, type = "website" } = Astro.props;
+const { title, description, image, type = "website", publishedTime } =
+  Astro.props;
 const archiveYears = await getArchiveYears();
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -38,99 +41,49 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:site_name" content="Max Beatty" />
     <meta property="og:locale" content="en_US" />
     {description && <meta property="og:description" content={description} />}
-    {image && <meta property="og:image" content={new URL(image, Astro.site).href} />}
-    <meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+    {
+      image && (
+        <meta
+          property="og:image"
+          content={new URL(image, Astro.site).href}
+        />
+      )
+    }
+    <meta
+      name="twitter:card"
+      content={image ? "summary_large_image" : "summary"}
+    />
     <meta name="twitter:site" content="@maxbeatty" />
     <meta name="twitter:creator" content="@maxbeatty" />
-    <style>
-      body {
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
-        max-width: 42rem;
-        margin: 0 auto;
-        padding: 1rem;
-        line-height: 1.6;
-        color: #222;
-      }
-      nav {
-        margin-bottom: 2rem;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid #eee;
-      }
-      nav a {
-        margin-right: 1rem;
-        text-decoration: none;
-        color: #0066cc;
-      }
-      nav a:hover {
-        text-decoration: underline;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      footer {
-        margin-top: 3rem;
-        padding-top: 1rem;
-        border-top: 1px solid #eee;
-        font-size: 0.875rem;
-        color: #666;
-      }
-      .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        align-items: center;
-        margin-bottom: 0.75rem;
-      }
-      .footer-links a {
-        color: #0066cc;
-        text-decoration: none;
-      }
-      .footer-links a:hover {
-        text-decoration: underline;
-      }
-      .footer-links select {
-        font-size: 0.875rem;
-        padding: 0.15rem 0.25rem;
-        color: #666;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        background: white;
-      }
-      .separator {
-        color: #ccc;
-      }
-      :global(h2 > a),
-      :global(h3 > a),
-      :global(h4 > a) {
-        color: inherit;
-        text-decoration: none;
-      }
-      :global(h2 > a:hover),
-      :global(h3 > a:hover),
-      :global(h4 > a:hover) {
-        text-decoration: underline;
-      }
-    </style>
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
   </head>
-  <body>
-    <nav>
-      <a href="/">Home</a>
+  <body
+    class="mx-auto max-w-2xl px-4 py-4 font-sans leading-relaxed text-gray-900"
+  >
+    <nav class="mb-8 border-b border-gray-200 pb-2">
+      <a href="/" class="mr-4 text-blue-600 no-underline hover:underline"
+        >Home</a
+      >
     </nav>
     <main>
       <slot />
     </main>
-    <footer>
-      <div class="footer-links">
-        <a href="/about/">About</a>
-        <a href="/categories/">Categories</a>
-        <a href="/tags/">Tags</a>
+    <footer class="mt-12 border-t border-gray-200 pt-4 text-sm text-gray-500">
+      <div class="mb-3 flex flex-wrap items-center gap-4">
+        <a href="/about/" class="text-blue-600 no-underline hover:underline"
+          >About</a
+        >
+        <a
+          href="/categories/"
+          class="text-blue-600 no-underline hover:underline">Categories</a
+        >
+        <a href="/tags/" class="text-blue-600 no-underline hover:underline"
+          >Tags</a
+        >
         <select
           aria-label="Archive"
           onchange="if(this.value)location.href=this.value"
+          class="rounded border border-gray-300 bg-white px-1 py-0.5 text-sm text-gray-500"
         >
           <option value="">Archive</option>
           {
@@ -144,10 +97,19 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
             ))
           }
         </select>
-        <span class="separator">|</span>
-        <a href="https://www.linkedin.com/in/maxbeatty/">LinkedIn</a>
-        <a href="https://github.com/maxbeatty">GitHub</a>
-        <a href="https://twitter.com/maxbeatty">X</a>
+        <span class="text-gray-300">|</span>
+        <a
+          href="https://www.linkedin.com/in/maxbeatty/"
+          class="text-blue-600 no-underline hover:underline">LinkedIn</a
+        >
+        <a
+          href="https://github.com/maxbeatty"
+          class="text-blue-600 no-underline hover:underline">GitHub</a
+        >
+        <a
+          href="https://twitter.com/maxbeatty"
+          class="text-blue-600 no-underline hover:underline">X</a
+        >
       </div>
       <p>&copy; Max Beatty</p>
     </footer>

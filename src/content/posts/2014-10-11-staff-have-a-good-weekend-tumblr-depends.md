@@ -12,5 +12,5 @@ postFormat: gallery
 [staff](http://staff.tumblr.com/post/99671967250/have-a-good-weekend-tumblr):
 
 > Have a good weekend, Tumblr.
-
+>
 > Depends on the size of the chair

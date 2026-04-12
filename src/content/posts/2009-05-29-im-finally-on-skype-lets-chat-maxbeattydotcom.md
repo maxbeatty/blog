@@ -6,4 +6,4 @@ categories:
   - "Personal"
 ---
 
-I’m finally on Skype! Let’s chat - [mxbtty](mxbtty?chat)
+I’m finally on Skype! Let’s chat - mxbtty

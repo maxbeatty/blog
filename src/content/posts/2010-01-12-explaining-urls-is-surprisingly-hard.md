@@ -18,6 +18,6 @@ categories:
 > - [www.paypal.com.evil.com](http://www.paypal.com.evil.com) (see the evil.com is at the end? you need to read URLs from right to left)
 > - [www.evil.com/paypal.com](http://www.evil.com/paypal.com) (well, except in this case)
 > - [www.paypa1.com](http://www.paypa1.com) (bad, but very hard to see)
-> - <a href=”evil.com”>www.paypal.com</a> (bad, can’t you see the url in the chrome when you mouseover?)
+> - <a href="evil.com">www.paypal.com</a> (bad, can’t you see the url in the chrome when you mouseover?)
 >
 > It’s so intuitive for techies to see the good and bad URLs but there’s just no simple set of rules for explaining it.  I guess you could forward them the [RFC](http://www.ietf.org/rfc/rfc1738.txt)…

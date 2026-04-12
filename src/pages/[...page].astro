@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPathsOptions } from "astro";
 import { getCollection } from "astro:content";
+import PostList from "../components/PostList.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -12,62 +13,32 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 const { page } = Astro.props;
 ---
 
-<BaseLayout title={page.currentPage === 1 ? "Max Beatty" : `Page ${page.currentPage} - Max Beatty`}>
+<BaseLayout
+  title={page.currentPage === 1
+    ? "Max Beatty"
+    : `Page ${page.currentPage} - Max Beatty`}
+>
   <h1>Max Beatty</h1>
-  <ul>
+  <PostList posts={page.data} />
+  <nav
+    class="mt-8 flex items-center justify-between border-t border-gray-200 pt-4"
+  >
     {
-      page.data.map((post) => (
-        <li>
-          <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            })}
-          </time>
-          <a href={`/${post.id}/`}>{post.data.title}</a>
-        </li>
-      ))
+      page.url.prev && (
+        <a href={page.url.prev} class="text-blue-600 no-underline hover:underline">
+          &larr; Newer
+        </a>
+      )
     }
-  </ul>
-  <nav class="pagination">
-    {page.url.prev && <a href={page.url.prev}>&larr; Newer</a>}
-    <span>Page {page.currentPage} of {page.lastPage}</span>
-    {page.url.next && <a href={page.url.next}>Older &rarr;</a>}
+    <span class="text-sm text-gray-500"
+      >Page {page.currentPage} of {page.lastPage}</span
+    >
+    {
+      page.url.next && (
+        <a href={page.url.next} class="text-blue-600 no-underline hover:underline">
+          Older &rarr;
+        </a>
+      )
+    }
   </nav>
 </BaseLayout>
-
-<style>
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  li {
-    margin-bottom: 0.5rem;
-  }
-  time {
-    color: #666;
-    font-size: 0.875rem;
-    margin-right: 0.5rem;
-    font-variant-numeric: tabular-nums;
-  }
-  .pagination {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid #eee;
-  }
-  .pagination a {
-    color: #0066cc;
-    text-decoration: none;
-  }
-  .pagination a:hover {
-    text-decoration: underline;
-  }
-  .pagination span {
-    color: #666;
-    font-size: 0.875rem;
-  }
-</style>

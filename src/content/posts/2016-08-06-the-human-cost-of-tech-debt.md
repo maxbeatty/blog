@@ -6,4 +6,4 @@ categories:
   - "Personal"
 ---
 
-I've been experiencing this first hand for over a year. Side projects have helped with the atrophied skills, but the mental toll is still there. Source: [The Human Cost of Tech Debt - DaedTech](//www.infragistics.com/community/blogs/erikdietrich/archive/2016/06/29/the-human-cost-of-tech-debt.aspx)
+I've been experiencing this first hand for over a year. Side projects have helped with the atrophied skills, but the mental toll is still there. Source: [The Human Cost of Tech Debt - DaedTech](https://www.infragistics.com/community/blogs/erikdietrich/archive/2016/06/29/the-human-cost-of-tech-debt.aspx)
