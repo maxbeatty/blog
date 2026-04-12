@@ -5,11 +5,13 @@ test("home page has expected heading", async ({ page }) => {
   await expect(page.locator("h1")).toHaveText("Max Beatty");
 });
 
-test("home page lists posts", async ({ page }) => {
+test("home page lists 20 posts with pagination", async ({ page }) => {
   await page.goto("/");
   const postLinks = page.locator("ul a");
   await expect(postLinks.first()).toBeVisible();
-  expect(await postLinks.count()).toBeGreaterThan(100);
+  expect(await postLinks.count()).toBe(20);
+  await expect(page.locator(".pagination")).toBeVisible();
+  await expect(page.locator('a[href="/2/"]')).toBeVisible();
 });
 
 test("post page renders content", async ({ page }) => {
