@@ -1,0 +1,6 @@
+{
+  "enabledMcpjsonServers": [
+    "astro-docs"
+  ],
+  "enableAllProjectMcpServers": true
+}

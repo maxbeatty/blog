@@ -10,3 +10,25 @@
 ### Routinely
 
 1. Install dependencies: `npm install`
+
+## Development
+
+Start the local development server:
+
+```sh
+npm run dev
+```
+
+## Test
+
+Run the test suite:
+
+```sh
+npm run test
+```
+
+Build the site:
+
+```sh
+npm run build
+```
