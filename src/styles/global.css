@@ -1,15 +1,312 @@
 @import "tailwindcss";
 
-@layer base {
-  h2 > a,
-  h3 > a,
-  h4 > a {
-    color: inherit;
-    text-decoration: none;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl: 2rem;
+  --text-4xl--line-height: 2.5rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+  --text-6xl: 3.75rem;
+  --text-6xl--line-height: 1;
+  --text-7xl: 4.5rem;
+  --text-7xl--line-height: 1;
+  --text-8xl: 6rem;
+  --text-8xl--line-height: 1;
+  --text-9xl: 8rem;
+  --text-9xl--line-height: 1;
+}
+
+.prose {
+  --prose-body: var(--color-zinc-600);
+  --prose-headings: var(--color-zinc-900);
+  --prose-links: var(--color-sky-500);
+  --prose-links-hover: var(--color-sky-600);
+  --prose-underline: oklch(from var(--color-sky-500) l c h / 0.2);
+  --prose-underline-hover: var(--color-sky-500);
+  --prose-bold: var(--color-zinc-900);
+  --prose-counters: var(--color-zinc-900);
+  --prose-bullets: var(--color-zinc-900);
+  --prose-hr: var(--color-zinc-100);
+  --prose-quote-borders: var(--color-zinc-200);
+  --prose-captions: var(--color-zinc-400);
+  --prose-code: var(--color-zinc-700);
+  --prose-code-bg: oklch(from var(--color-zinc-300) l c h / 0.2);
+  --prose-pre-code: var(--color-zinc-100);
+  --prose-pre-bg: var(--color-zinc-900);
+  --prose-pre-border: transparent;
+  --prose-th-borders: var(--color-zinc-200);
+  --prose-td-borders: var(--color-zinc-100);
+
+  color: var(--prose-body);
+  line-height: --spacing(7);
+
+  @variant dark {
+    --prose-body: var(--color-zinc-400);
+    --prose-headings: var(--color-zinc-200);
+    --prose-links: var(--color-sky-400);
+    --prose-links-hover: var(--color-sky-400);
+    --prose-underline: oklch(from var(--color-sky-400) l c h / 0.3);
+    --prose-underline-hover: var(--color-sky-400);
+    --prose-bold: var(--color-zinc-200);
+    --prose-counters: var(--color-zinc-200);
+    --prose-bullets: var(--color-zinc-200);
+    --prose-hr: oklch(from var(--color-zinc-700) l c h / 0.4);
+    --prose-quote-borders: var(--color-zinc-500);
+    --prose-captions: var(--color-zinc-500);
+    --prose-code: var(--color-zinc-300);
+    --prose-code-bg: oklch(from var(--color-zinc-200) l c h / 0.05);
+    --prose-pre-code: var(--color-zinc-100);
+    --prose-pre-bg: rgb(0 0 0 / 0.4);
+    --prose-pre-border: oklch(from var(--color-zinc-200) l c h / 0.1);
+    --prose-th-borders: var(--color-zinc-700);
+    --prose-td-borders: var(--color-zinc-800);
   }
-  h2 > a:hover,
-  h3 > a:hover,
-  h4 > a:hover {
+
+  & > * + * {
+    margin-top: --spacing(10);
+  }
+
+  & p {
+    margin-top: --spacing(7);
+    margin-bottom: --spacing(7);
+  }
+
+  & h2,
+  & h3 {
+    color: var(--prose-headings);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  & h2 {
+    font-size: var(--text-xl);
+    line-height: --spacing(7);
+    margin-top: --spacing(20);
+    margin-bottom: --spacing(4);
+  }
+
+  & h3 {
+    font-size: var(--text-base);
+    line-height: --spacing(7);
+    margin-top: --spacing(16);
+    margin-bottom: --spacing(4);
+  }
+
+  & :is(h2, h3) + * {
+    margin-top: 0;
+  }
+
+  & img {
+    border-radius: var(--radius-3xl);
+  }
+
+  & a {
+    color: var(--prose-links);
+    font-weight: var(--font-weight-semibold);
     text-decoration: underline;
+    text-decoration-color: var(--prose-underline);
+    transition-property: color, text-decoration-color;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+  }
+
+  & a:hover {
+    color: var(--prose-links-hover);
+    text-decoration-color: var(--prose-underline-hover);
+  }
+
+  & strong {
+    color: var(--prose-bold);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  & code {
+    display: inline-block;
+    color: var(--prose-code);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    background-color: var(--prose-code-bg);
+    border-radius: var(--radius-lg);
+    padding-left: --spacing(1);
+    padding-right: --spacing(1);
+  }
+
+  & a code {
+    color: inherit;
+  }
+
+  & :is(h2, h3) code {
+    font-weight: var(--font-weight-bold);
+  }
+
+  & blockquote {
+    padding-left: --spacing(6);
+    border-left-width: 2px;
+    border-left-color: var(--prose-quote-borders);
+    font-style: italic;
+  }
+
+  & figcaption {
+    color: var(--prose-captions);
+    font-size: var(--text-sm);
+    line-height: --spacing(6);
+    margin-top: --spacing(3);
+  }
+
+  & figcaption > p {
+    margin: 0;
+  }
+
+  & ul {
+    list-style-type: disc;
+  }
+
+  & ol {
+    list-style-type: decimal;
+  }
+
+  & ul,
+  & ol {
+    padding-left: --spacing(6);
+  }
+
+  & li {
+    margin-top: --spacing(6);
+    margin-bottom: --spacing(6);
+    padding-left: --spacing(3.5);
+  }
+
+  & li::marker {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  & ol > li::marker {
+    color: var(--prose-counters);
+  }
+
+  & ul > li::marker {
+    color: var(--prose-bullets);
+  }
+
+  & li :is(ol, ul) {
+    margin-top: --spacing(4);
+    margin-bottom: --spacing(4);
+  }
+
+  & li :is(li, p) {
+    margin-top: --spacing(3);
+    margin-bottom: --spacing(3);
+  }
+
+  & pre {
+    color: var(--prose-pre-code);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+    background-color: var(--prose-pre-bg);
+    border-radius: var(--radius-3xl);
+    padding: --spacing(8);
+    overflow-x: auto;
+    border: 1px solid var(--prose-pre-border);
+  }
+
+  & pre code {
+    display: inline;
+    color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+  }
+
+  & hr {
+    margin-top: --spacing(20);
+    margin-bottom: --spacing(20);
+    border-top-width: 1px;
+    border-color: var(--prose-hr);
+  }
+
+  @media (min-width: 1024px) {
+    & hr {
+      margin-left: calc(--spacing(12) * -1);
+      margin-right: calc(--spacing(12) * -1);
+    }
+  }
+
+  & table {
+    width: 100%;
+    table-layout: auto;
+    text-align: left;
+    font-size: var(--text-sm);
+  }
+
+  & thead {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--prose-th-borders);
+  }
+
+  & thead th {
+    color: var(--prose-headings);
+    font-weight: var(--font-weight-semibold);
+    vertical-align: bottom;
+    padding-bottom: --spacing(2);
+  }
+
+  & thead th:not(:first-child) {
+    padding-left: --spacing(2);
+  }
+
+  & thead th:not(:last-child) {
+    padding-right: --spacing(2);
+  }
+
+  & tbody tr {
+    border-bottom-width: 1px;
+    border-bottom-color: var(--prose-td-borders);
+  }
+
+  & tbody tr:last-child {
+    border-bottom-width: 0;
+  }
+
+  & tbody td {
+    vertical-align: baseline;
+  }
+
+  & tfoot {
+    border-top-width: 1px;
+    border-top-color: var(--prose-th-borders);
+  }
+
+  & tfoot td {
+    vertical-align: top;
+  }
+
+  & :is(tbody, tfoot) td {
+    padding-top: --spacing(2);
+    padding-bottom: --spacing(2);
+  }
+
+  & :is(tbody, tfoot) td:not(:first-child) {
+    padding-left: --spacing(2);
+  }
+
+  & :is(tbody, tfoot) td:not(:last-child) {
+    padding-right: --spacing(2);
   }
 }

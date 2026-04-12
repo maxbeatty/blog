@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleLayout from "../../components/SimpleLayout.astro";
+import PostList from "../../components/PostList.astro";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const grouped = new Map<number, typeof posts>();
+for (const post of posts) {
+  const year = post.data.date.getFullYear();
+  if (!grouped.has(year)) grouped.set(year, []);
+  grouped.get(year)!.push(post);
+}
+const years = [...grouped.entries()].sort((a, b) => b[0] - a[0]);
+---
+
+<BaseLayout
+  title="Articles - Max Beatty"
+  description="All of my writing, grouped by year."
+>
+  <SimpleLayout
+    title="Articles"
+    intro="All of my writing, grouped by year. Browse by category or tag for more focused reading."
+  >
+    <div class="flex flex-wrap gap-4 text-sm">
+      <a
+        href="/categories/"
+        class="text-zinc-500 transition hover:text-sky-500 dark:text-zinc-400 dark:hover:text-sky-400"
+        >Categories</a
+      >
+      <a
+        href="/tags/"
+        class="text-zinc-500 transition hover:text-sky-500 dark:text-zinc-400 dark:hover:text-sky-400"
+        >Tags</a
+      >
+    </div>
+    <div class="mt-12 space-y-16">
+      {
+        years.map(([year, yearPosts]) => (
+          <section>
+            <h2 class="text-2xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+              <a
+                href={`/${year}/`}
+                class="transition hover:text-sky-500 dark:hover:text-sky-400"
+              >
+                {year}
+              </a>
+            </h2>
+            <div class="mt-6">
+              <PostList posts={yearPosts} showYear={false} />
+            </div>
+          </section>
+        ))
+      }
+    </div>
+  </SimpleLayout>
+</BaseLayout>

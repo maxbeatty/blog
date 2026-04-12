@@ -9,13 +9,13 @@ interface Props {
 const { posts, showYear = true } = Astro.props;
 ---
 
-<ul class="list-none p-0">
+<ul role="list" class="space-y-2">
   {
     posts.map((post) => (
-      <li class="mb-2">
+      <li class="flex gap-4">
         <time
           datetime={post.data.date.toISOString()}
-          class="mr-2 text-sm tabular-nums text-gray-500"
+          class="w-20 shrink-0 tabular-nums text-sm text-zinc-400 dark:text-zinc-500"
         >
           {post.data.date.toLocaleDateString("en-US", {
             year: showYear ? "numeric" : undefined,
@@ -23,7 +23,12 @@ const { posts, showYear = true } = Astro.props;
             day: "numeric",
           })}
         </time>
-        <a href={`/${post.id}/`}>{post.data.title}</a>
+        <a
+          href={`/${post.id}/`}
+          class="text-sm text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-400"
+        >
+          {post.data.title}
+        </a>
       </li>
     ))
   }

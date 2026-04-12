@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SimpleLayout from "../components/SimpleLayout.astro";
+
+const sections = [
+  {
+    title: "Workstation",
+    items: [
+      {
+        name: "MacBook Pro",
+        description: "My daily driver for development and everything else.",
+      },
+    ],
+  },
+  {
+    title: "Development",
+    items: [
+      {
+        name: "VS Code",
+        description:
+          "My primary editor. I keep the configuration minimal and let extensions do the heavy lifting.",
+      },
+      {
+        name: "Warp",
+        description: "A modern terminal that makes the command line feel good.",
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Uses - Max Beatty"
+  description="Software I use, tools I love, and other things I recommend."
+>
+  <SimpleLayout
+    title="Software I use, tools I love, and other things I recommend."
+    intro="A living document of the tools and software that power my daily workflow."
+  >
+    <div class="space-y-20">
+      {
+        sections.map((section) => (
+          <section>
+            <h2 class="text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
+              {section.title}
+            </h2>
+            <ul role="list" class="mt-6 space-y-6">
+              {section.items.map((item) => (
+                <li>
+                  <h3 class="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+                    {item.name}
+                  </h3>
+                  <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                    {item.description}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </SimpleLayout>
+</BaseLayout>

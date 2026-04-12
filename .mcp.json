@@ -3,6 +3,13 @@
     "astro-docs": {
       "type": "http",
       "url": "https://mcp.docs.astro.build/mcp"
+    },
+    "uidotsh": {
+      "type": "http",
+      "url": "https://ui.sh/mcp?agent=claude",
+      "headers": {
+        "Authorization": "Bearer ${UIDOTSH_TOKEN}"
+      }
     }
   }
 }

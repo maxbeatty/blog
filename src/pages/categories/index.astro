@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleLayout from "../../components/SimpleLayout.astro";
 import { slugify } from "../../lib/slugify";
 
 const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -16,15 +17,23 @@ const categories = [...categoryCounts.entries()].sort((a, b) => b[1] - a[1]);
 ---
 
 <BaseLayout title="Categories - Max Beatty">
-  <h1>Categories</h1>
-  <ul class="list-none p-0">
-    {
-      categories.map(([category, count]) => (
-        <li class="mb-2">
-          <a href={`/categories/${slugify(category)}/`}>{category}</a>
-          <span class="text-sm text-gray-500">({count})</span>
-        </li>
-      ))
-    }
-  </ul>
+  <SimpleLayout title="Categories" intro="Browse articles by category.">
+    <ul role="list" class="space-y-2">
+      {
+        categories.map(([category, count]) => (
+          <li>
+            <a
+              href={`/categories/${slugify(category)}/`}
+              class="text-sm text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-400"
+            >
+              {category}
+            </a>
+            <span class="ml-1 text-sm tabular-nums text-zinc-400 dark:text-zinc-500">
+              ({count})
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </SimpleLayout>
 </BaseLayout>

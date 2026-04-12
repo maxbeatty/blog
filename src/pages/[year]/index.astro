@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleLayout from "../../components/SimpleLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -37,23 +38,32 @@ for (const post of posts) {
   }
   months.get(mm)!.count++;
 }
-const sortedMonths = [...months.entries()].sort((a, b) => b[0].localeCompare(a[0]));
+const sortedMonths = [...months.entries()].sort((a, b) =>
+  b[0].localeCompare(a[0]),
+);
 ---
 
 <BaseLayout title={`${year} - Max Beatty`}>
-  <h1>{year}</h1>
-  <nav>
-    <ul class="mb-8 flex list-none flex-wrap gap-2 p-0">
-      {
-        sortedMonths.map(([mm, { label, count }]) => (
-          <li>
-            <a href={`/${year}/${mm}/`}>
-              {label} ({count})
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </nav>
-  <PostList posts={posts} showYear={false} />
+  <SimpleLayout
+    title={year}
+    intro={`All articles published in ${year}.`}
+  >
+    <nav>
+      <ul role="list" class="mb-8 flex flex-wrap gap-2">
+        {
+          sortedMonths.map(([mm, { label, count }]) => (
+            <li>
+              <a
+                href={`/${year}/${mm}/`}
+                class="rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-600 transition hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700"
+              >
+                {label} ({count})
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <PostList posts={posts} showYear={false} />
+  </SimpleLayout>
 </BaseLayout>
