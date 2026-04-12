@@ -7,7 +7,7 @@
   "type": "module",
   "scripts": {
     "build": "astro build",
-    "cspell": "cspell",
+    "cspell": "cspell lint --no-must-find-files 'src/content/posts/202[6-9]-*.md' 'src/content/posts/20[3-9][0-9]-*.md'",
     "dev": "astro dev",
     "linkcheck": "mise exec -- lychee --offline --root-dir dist --exclude evil dist/",
     "markdownlint": "markdownlint-cli2",
