@@ -39,17 +39,20 @@
   text-decoration-color: oklch(from var(--color-sky-500) l c h / 0.3);
 }
 
-.prose :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
+.prose
+  :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
   color: var(--color-sky-600);
   text-decoration-color: var(--color-sky-500);
 }
 
-.prose.prose-invert :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+.prose.prose-invert
+  :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   color: var(--color-sky-400);
   text-decoration-color: oklch(from var(--color-sky-400) l c h / 0.3);
 }
 
-.prose.prose-invert :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
+.prose.prose-invert
+  :where(a):not(:where([class~="not-prose"], [class~="not-prose"] *)):hover {
   color: var(--color-sky-400);
   text-decoration-color: var(--color-sky-400);
 }

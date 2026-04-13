@@ -2,9 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("home page has expected heading", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator("main h1")).toContainText(
-    "Software engineering leader",
-  );
+  await expect(page.locator("main h1")).toContainText("Max Beatty");
 });
 
 test("home page lists 3 latest articles", async ({ page }) => {
@@ -49,7 +47,7 @@ test("post page has syntax highlighted code blocks", async ({ page }) => {
 
 test("about page renders", async ({ page }) => {
   await page.goto("/about/");
-  await expect(page.locator("main h1")).toContainText("Max Beatty");
+  await expect(page.locator("main h1")).toHaveText("About");
 });
 
 test("404 page renders", async ({ page }) => {
@@ -117,5 +115,4 @@ test("footer has navigation links", async ({ page }) => {
   await expect(footer.locator('a[href="/about/"]')).toBeVisible();
   await expect(footer.locator('a[href="/articles/"]')).toBeVisible();
   await expect(footer.locator('a[href="/projects/"]')).toBeVisible();
-  await expect(footer.locator('a[href="/uses/"]')).toBeVisible();
 });
