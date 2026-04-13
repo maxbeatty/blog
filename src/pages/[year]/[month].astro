@@ -2,11 +2,15 @@
 import { getCollection } from "astro:content";
 import PostList from "../../components/PostList.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import SimpleLayout from "../../components/SimpleLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
 
-  const monthMap = new Map<string, { year: string; month: string; posts: typeof posts }>();
+  const monthMap = new Map<
+    string,
+    { year: string; month: string; posts: typeof posts }
+  >();
   for (const post of posts) {
     const year = String(post.data.date.getFullYear());
     const month = String(post.data.date.getMonth() + 1).padStart(2, "0");
@@ -20,7 +24,7 @@ export async function getStaticPaths() {
     props: {
       year,
       month,
-      label: posts[0].data.date.toLocaleDateString("en-US", {
+      label: posts[0]!.data.date.toLocaleDateString("en-US", {
         month: "long",
         year: "numeric",
       }),
@@ -35,7 +39,15 @@ const { year, label, posts } = Astro.props;
 ---
 
 <BaseLayout title={`${label} - Max Beatty`}>
-  <h1>{label}</h1>
-  <p><a href={`/${year}/`}>&larr; All of {year}</a></p>
-  <PostList posts={posts} showYear={false} />
+  <SimpleLayout title={label} intro={`Articles published in ${label}.`}>
+    <p class="mb-8">
+      <a
+        href={`/${year}/`}
+        class="text-sm font-medium text-sky-500 transition hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+      >
+        &larr; All of {year}
+      </a>
+    </p>
+    <PostList posts={posts} showYear={false} />
+  </SimpleLayout>
 </BaseLayout>

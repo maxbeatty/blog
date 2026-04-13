@@ -1,0 +1,171 @@
+---
+import Container from "./Container.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import { navItems } from "../lib/nav";
+
+const pathname = Astro.url.pathname;
+
+function isActive(href: string) {
+  return pathname === href || pathname.startsWith(href.replace(/\/$/, "") + "/");
+}
+---
+
+<header class="pointer-events-none relative z-50 flex flex-none flex-col">
+  <div class="top-0 z-10 h-16 pt-6">
+    <Container>
+      <div class="relative flex gap-4">
+        <div class="flex flex-1">
+          <div
+            class="size-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10"
+          >
+            <a href="/" aria-label="Home" class="pointer-events-auto">
+              <span
+                class="flex size-9 items-center justify-center rounded-full bg-zinc-100 text-sm font-semibold text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200"
+                >MB</span
+              >
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-1 justify-end md:justify-center">
+          <div class="pointer-events-auto md:hidden">
+            <button
+              type="button"
+              id="mobile-menu-button"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              class="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+            >
+              Menu
+              <svg
+                viewBox="0 0 8 6"
+                aria-hidden="true"
+                class="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400"
+              >
+                <path
+                  d="M1.75 1.75 4 4.25l2.25-2.5"
+                  fill="none"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
+          <nav class="pointer-events-auto hidden md:block">
+            <ul
+              role="list"
+              class="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10"
+            >
+              {
+                navItems.map(({ href, label }) => (
+                  <li>
+                    <a
+                      href={href}
+                      class:list={[
+                        "relative block px-3 py-2 transition",
+                        isActive(href)
+                          ? "text-sky-500 dark:text-sky-400"
+                          : "hover:text-sky-500 dark:hover:text-sky-400",
+                      ]}
+                    >
+                      {label}
+                      {isActive(href) && (
+                        <span class="absolute inset-x-1 -bottom-px h-px bg-linear-to-r from-sky-500/0 via-sky-500/40 to-sky-500/0 dark:from-sky-400/0 dark:via-sky-400/40 dark:to-sky-400/0" />
+                      )}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </nav>
+        </div>
+        <div class="flex justify-end md:flex-1">
+          <div class="pointer-events-auto">
+            <ThemeToggle />
+          </div>
+        </div>
+      </div>
+    </Container>
+  </div>
+</header>
+
+<div
+  id="mobile-menu-backdrop"
+  class="fixed inset-0 z-50 hidden bg-zinc-800/40 backdrop-blur-xs dark:bg-black/80"
+>
+</div>
+<div
+  id="mobile-menu"
+  class="fixed inset-x-4 top-8 z-50 hidden origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
+>
+  <div class="flex flex-row-reverse items-center justify-between">
+    <button
+      type="button"
+      id="mobile-menu-close"
+      aria-label="Close menu"
+      class="-m-1 p-1"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        class="size-6 text-zinc-500 dark:text-zinc-400"
+      >
+        <path
+          d="m17.25 6.75-10.5 10.5M6.75 6.75l10.5 10.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+    <p class="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+      Navigation
+    </p>
+  </div>
+  <nav class="mt-6">
+    <ul
+      role="list"
+      class="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300"
+    >
+      {
+        navItems.map(({ href, label }) => (
+          <li>
+            <a href={href} class="block py-2">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  function setupMobileMenu() {
+    const button = document.getElementById("mobile-menu-button");
+    const menu = document.getElementById("mobile-menu");
+    const backdrop = document.getElementById("mobile-menu-backdrop");
+    const close = document.getElementById("mobile-menu-close");
+
+    if (!button || !menu || !backdrop || !close) return;
+
+    function open() {
+      menu!.classList.remove("hidden");
+      backdrop!.classList.remove("hidden");
+      button!.setAttribute("aria-expanded", "true");
+    }
+
+    function shut() {
+      menu!.classList.add("hidden");
+      backdrop!.classList.add("hidden");
+      button!.setAttribute("aria-expanded", "false");
+    }
+
+    button.addEventListener("click", open);
+    close.addEventListener("click", shut);
+    backdrop.addEventListener("click", shut);
+  }
+
+  setupMobileMenu();
+  document.addEventListener("astro:after-swap", setupMobileMenu);
+</script>

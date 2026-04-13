@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import SocialIcons from "../components/SocialIcons.astro";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const latest = posts.slice(0, 3);
+---
+
+<BaseLayout title="Max Beatty">
+  <Container class="mt-9">
+    <div class="max-w-2xl">
+      <h1
+        class="text-4xl font-semibold tracking-tight text-zinc-800 sm:text-5xl text-balance dark:text-zinc-100"
+      >
+        Max Beatty
+      </h1>
+      <p class="mt-6 text-base text-zinc-600 text-pretty dark:text-zinc-400">
+        I'm an engineering leader based in San Francisco. I enjoy wearing
+        many hats to design and build products for the web and mobile from scratch.
+      </p>
+      <div class="mt-6 flex gap-6">
+
+        <a
+          href="https://www.linkedin.com/in/maxbeatty/"
+          aria-label="Follow on LinkedIn"
+          class="group -m-1 p-1"
+        >
+          <SocialIcons
+            name="linkedin"
+            class="size-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
+          />
+        </a>
+        <a
+          href="https://github.com/maxbeatty"
+          aria-label="Follow on GitHub"
+          class="group -m-1 p-1"
+        >
+          <SocialIcons
+            name="github"
+            class="size-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
+          />
+        </a>
+        <a
+          href="https://x.com/maxbeatty"
+          aria-label="Follow on X"
+          class="group -m-1 p-1"
+        >
+          <SocialIcons
+            name="x"
+            class="size-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"
+          />
+        </a>
+      </div>
+    </div>
+  </Container>
+  <Container class="mt-24 md:mt-28">
+    <div class="flex flex-col gap-16">
+      {
+        latest.map((post) => (
+          <ArticleCard
+            title={post.data.title}
+            href={`/${post.id}/`}
+            date={post.data.date}
+          />
+        ))
+      }
+    </div>
+    <p class="mt-12">
+      <a
+        href="/articles/"
+        class="text-sm font-medium text-sky-500 transition hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+      >
+        See all articles &rarr;
+      </a>
+    </p>
+  </Container>
+</BaseLayout>

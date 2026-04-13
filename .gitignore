@@ -1,5 +1,6 @@
 .astro/
 .claude/projects/
+.claude/settings.local.json
 .wrangler/
 dist/
 node_modules/

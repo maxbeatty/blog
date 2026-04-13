@@ -1,14 +1,95 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/Container.astro";
+import SocialIcons from "../components/SocialIcons.astro";
 ---
 
 <BaseLayout title="About - Max Beatty" description="About Max Beatty">
-  <h1>About</h1>
-  <p>
-    Howdy! I'm a software engineering leader based in San Francisco. I enjoy
-    wearing many hats to design and build products for the web from scratch. Some
-    of my past projects include <a href="https://passplum.com/">Pass Plum</a> and
-    <a href="https://github.com/motdotla/dotenv">dotenv</a>. When I'm not
-    coding, you can find me playing basketball, tennis, and Euchre.
-  </p>
+  <Container class="mt-16 sm:mt-32">
+    <div
+      class="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12"
+    >
+      <div class="lg:pl-20">
+        <div class="max-w-xs px-2.5 lg:max-w-none">
+          <img
+            src="/profile.jpeg"
+            alt="Max Beatty"
+            class="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+          />
+        </div>
+      </div>
+      <div class="lg:order-first lg:row-span-2">
+        <h1
+          class="text-4xl font-semibold tracking-tight text-zinc-800 sm:text-5xl text-balance dark:text-zinc-100"
+        >
+          About
+        </h1>
+        <div
+          class="mt-6 space-y-7 text-base text-zinc-600 text-pretty dark:text-zinc-400"
+        >
+          <p>
+            Howdy! I'm a software engineering leader based in San Francisco. I
+            enjoy wearing many hats to design and build products for the web and mobile from
+            scratch.
+          </p>
+          <p>
+            I'm currently leading engineering at <a href="https://poolmoney.com/" class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300">Pool</a>, a collaborative checking account that offers effortless shared access, expense tracking, spending limits, and debit cards for everyone. Some of my past work includes <a
+              href="https://developers.cash.app/cash-app-pay-partner-api/guides/pay-kit-sdk/pay-kit-web-overview/pay-kit-benefits"
+              class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+              >Cash App Pay</a
+            >, a fast, free, and secure method to pay for purchases online, and <a
+              href="https://developer.squareup.com/docs/web-payments/overview"
+              class="text-sky-500 hover:text-sky-600 dark:text-sky-400 dark:hover:text-sky-300"
+              >Square's Web Payments SDK</a
+            >, which provides a secure card entry method, along with other payment methods.
+          </p>
+          <p>
+            When I'm not coding, you can find me playing golf, basketball, tennis, or
+            Euchre 🃏
+          </p>
+        </div>
+      </div>
+      <div class="lg:pl-20">
+        <ul role="list">
+          <li class="flex">
+            <a
+              href="https://www.linkedin.com/in/maxbeatty/"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-500"
+            >
+              <SocialIcons
+                name="linkedin"
+                class="size-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500"
+              />
+              <span class="ml-4">Connect on LinkedIn</span>
+            </a>
+          </li>
+          <li class="mt-4 flex">
+            <a
+              href="https://github.com/maxbeatty"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-500"
+            >
+              <SocialIcons
+                name="github"
+                class="size-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500"
+              />
+              <span class="ml-4">Follow on GitHub</span>
+            </a>
+          </li>
+          <li class="mt-4 flex">
+
+            <a
+              href="https://x.com/maxbeatty"
+              class="group flex text-sm font-medium text-zinc-800 transition hover:text-sky-500 dark:text-zinc-200 dark:hover:text-sky-500"
+            >
+              <SocialIcons
+                name="x"
+                class="size-6 flex-none fill-zinc-500 transition group-hover:fill-sky-500"
+              />
+              <span class="ml-4">Follow on X</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Container>
 </BaseLayout>
