@@ -132,7 +132,7 @@ for (var i = 0; i < gsuite.length; i++) {
 }
 ```
 
-Terraform has *a lot* of [DNS providers](https://www.terraform.io/docs/providers/index.html) built in as of version 0.9 and will be making it [easier to add them](https://www.hashicorp.com/blog/upcoming-provider-changes-in-terraform-0-10/) in 0.10 onward. I could see a module in the future that provides configurable basics for G Suite like [gnarea/terraform-gmail](https://github.com/gnarea/terraform-gmail) has started.
+Terraform has _a lot_ of [DNS providers](https://www.terraform.io/docs/providers/index.html) built in as of version 0.9 and will be making it [easier to add them](https://www.hashicorp.com/blog/upcoming-provider-changes-in-terraform-0-10/) in 0.10 onward. I could see a module in the future that provides configurable basics for G Suite like [gnarea/terraform-gmail](https://github.com/gnarea/terraform-gmail) has started.
 
 ```
 module "example_gsuite" {
@@ -144,6 +144,6 @@ module "example_gsuite" {
 }
 ```
 
-You can find all of these example configurations on [GitHub](https://github.com/maxbeatty/example-terraform-dns-route53). It *is* overkill to use Terraform for only these simple records, but this foundation will set you up for more advanced usage like aliasing an application load balancer or [CloudFront](https://aws.amazon.com/cloudfront/) distribution to a record.
+You can find all of these example configurations on [GitHub](https://github.com/maxbeatty/example-terraform-dns-route53). It _is_ overkill to use Terraform for only these simple records, but this foundation will set you up for more advanced usage like aliasing an application load balancer or [CloudFront](https://aws.amazon.com/cloudfront/) distribution to a record.
 
 _Originally published on [Medium](https://medium.com/@maxbeatty/using-terraform-to-manage-dns-records-b338f42b50dc)_

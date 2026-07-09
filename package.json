@@ -37,7 +37,7 @@
     "@playwright/test": "^1.61.1",
     "cspell": "^10.0.1",
     "markdownlint-cli2": "^0.22.1",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.4",
     "prettier-plugin-packagejson": "^3.0.2",
     "vitest": "^4.1.9",
     "wrangler": "^4.105.0"
