@@ -10,7 +10,7 @@ I just finished reading [another interesting article from Fast Company about tra
 
 Dear Fast Company,
 
-What do I have to pay you to eliminate pagination of your articles? Honestly, as soon as I get done reading the first page I look for the ‘print version’ that’ll display your article in its entirety without ads. I know that’s not what you want so put up more ads I’ll ignore or make me subscribe. I don’t want something in the mail every month; I just want to read your content from my ~iPad~ external monitor.
+What do I have to pay you to eliminate pagination of your articles? Honestly, as soon as I get done reading the first page I look for the ‘print version’ that’ll display your article in its entirety without ads. I know that’s not what you want so put up more ads I’ll ignore or make me subscribe. I don’t want something in the mail every month; I just want to read your content from my ~~iPad~~ external monitor.
 
 P.S. I’m not alone.
 

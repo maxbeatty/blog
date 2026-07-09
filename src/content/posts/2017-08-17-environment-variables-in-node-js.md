@@ -18,7 +18,7 @@ if (!isLocal) {
 databaseHost = "`example.dblayer.com";`
 }
 
-There are a couple problems with this approach. First, you’ll need to keep adding specific cases for every environment (e.g. `qa`, `staging`, `sams-staging`). Second, all of your sensitive data like database passwords are in **plain text** in version control being distributed to *every_developer on your team, \_every* CI build, and *every* deploy to every environment. Those maintenance and security headaches can be avoided by storing configuration in the environment.
+There are a couple problems with this approach. First, you’ll need to keep adding specific cases for every environment (e.g. `qa`, `staging`, `sams-staging`). Second, all of your sensitive data like database passwords are in **plain text** in version control being distributed to _every_developer on your team, \_every_ CI build, and _every_ deploy to every environment. Those maintenance and security headaches can be avoided by storing configuration in the environment.
 
 ```
 const databaseHost = process.env.DB_HOST;
