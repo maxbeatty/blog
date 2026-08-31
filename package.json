@@ -41,6 +41,6 @@
     "prettier": "^3.9.6",
     "prettier-plugin-packagejson": "^3.0.2",
     "vitest": "^4.1.11",
-    "wrangler": "^4.125.0"
+    "wrangler": "^4.127.0"
   }
 }
