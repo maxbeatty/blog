@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "cspell": "^10.1.1",
+    "cspell": "^10.2.1",
     "markdownlint-cli2": "^0.23.2",
     "prettier": "^3.9.6",
     "prettier-plugin-packagejson": "^3.0.2",
