@@ -1,4 +1,5 @@
 ---
+import { description, introduction } from "../lib/site";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Container from "../components/Container.astro";
@@ -10,7 +11,7 @@ posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const latest = posts.slice(0, 3);
 ---
 
-<BaseLayout title="Max Beatty">
+<BaseLayout title="Max Beatty" description={description}>
   <Container class="mt-9">
     <div class="max-w-2xl">
       <h1
@@ -18,10 +19,9 @@ const latest = posts.slice(0, 3);
       >
         Max Beatty
       </h1>
-      <p class="mt-6 text-base text-zinc-600 text-pretty dark:text-zinc-400">
-        I'm an engineering leader based in San Francisco. I enjoy wearing
-        many hats to design and build products for the web and mobile from scratch.
-      </p>
+      {introduction.map((paragraph) => (
+        <p class="mt-6 text-base text-zinc-600 text-pretty dark:text-zinc-400">{paragraph}</p>
+      ))}
       <div class="mt-6 flex gap-6">
 
         <a

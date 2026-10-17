@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SimpleLayout from "../components/SimpleLayout.astro";
+---
+
+<BaseLayout title="Privacy - Max Beatty" description="How this personal website uses analytics and browser storage.">
+  <SimpleLayout title="Privacy" intro="How this personal website uses analytics and browser storage.">
+    <div class="prose max-w-2xl dark:prose-invert">
+      <p>This website loads Google Analytics to understand how visitors use its pages. Your browser sends requests to Google when the analytics script runs. Google Analytics can use cookies and collect information about page visits, browser and device details, and interactions. See <a href="https://policies.google.com/privacy">Google’s privacy policy</a> for information about its handling of this data.</p>
+      <p>The light and dark theme control stores your selected theme in your browser’s local storage under the key “theme”. This lets the site remember your preference on later visits. You can clear this preference by removing this site’s browser storage. If no preference is saved, the site follows your device’s color scheme.</p>
+      <p>The site is hosted on Cloudflare, which processes requests to deliver pages and protect its network. See <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare’s privacy policy</a> for details. Links to other websites take you to services with their own privacy practices. For questions about this website, use the profiles on the <a href="/contact/">contact page</a>.</p>
+    </div>
+  </SimpleLayout>
+</BaseLayout>

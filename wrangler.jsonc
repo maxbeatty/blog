@@ -1,7 +1,11 @@
 {
   "name": "blog",
+  "main": "worker/index.js",
   "compatibility_date": "2026-04-10",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": ["/*", "!/media/*", "!/_astro/*"],
+    "not_found_handling": "404-page",
   },
 }
