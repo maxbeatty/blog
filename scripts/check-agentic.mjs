@@ -8,7 +8,6 @@ for (const [path, accept, status, type, content] of [
   ["/llms.txt", "*/*", 200, "text/plain", "## When to use this site"],
   ["/robots.txt", "*/*", 200, "text/plain", "Sitemap:"],
   ["/contact/", "text/html", 200, "text/html", "LinkedIn"],
-  ["/privacy/", "text/html", 200, "text/html", "Google Analytics"],
   ["/profile.jpeg", "*/*", 200, "image/jpeg", null],
   ["/sitemap-index.xml", "*/*", 200, "xml", "<sitemapindex"],
   ["/rss.xml", "*/*", 200, "xml", "<rss"],

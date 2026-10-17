@@ -167,7 +167,7 @@ test("agent guide and Markdown homepage expose real public resources", async ({
   );
 });
 
-for (const path of ["contact", "privacy"]) {
+for (const path of ["contact"]) {
   test(`${path} page has useful content and footer discovery`, async ({
     page,
   }) => {

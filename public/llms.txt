@@ -17,7 +17,6 @@ Read the public pages directly without authentication. Request the homepage with
 - [Articles](https://maxbeatty.com/articles/): Writing organized by year.
 - [Projects](https://maxbeatty.com/projects/): Projects and links to their official resources.
 - [Contact](https://maxbeatty.com/contact/): Public profiles for contacting Max.
-- [Privacy](https://maxbeatty.com/privacy/): Analytics and browser storage used by this website.
 
 ## Feeds and discovery
 
