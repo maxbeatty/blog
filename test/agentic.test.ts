@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
+import { serializeJsonLd } from "../src/lib/site";
 import worker, { prefersMarkdown } from "../worker/index.js";
 
 const request = (path: string, accept = "text/html", method = "GET") =>
@@ -10,6 +11,11 @@ const request = (path: string, accept = "text/html", method = "GET") =>
 describe("Markdown negotiation", () => {
   test.each([
     ["text/markdown", true],
+    ["text/markdown;q=0.5,*/*;q=1", false],
+    ["text/markdown;q=0.5,text/*;q=1", false],
+    ["text/markdown;q=1,text/*;q=0.5", true],
+    ["text/markdown;q=0,*/*;q=1", false],
+    ["text/markdown;q=0.5,text/html;q=0,*/*;q=1", true],
     ["text/html", false],
     ["*/*", false],
     ["text/markdown;q=0", false],
@@ -110,4 +116,12 @@ describe("Markdown negotiation", () => {
       );
     },
   );
+});
+
+test("JSON-LD escapes HTML script terminators and preserves the data", () => {
+  const value = { headline: '</script><script>alert("test")</script>' };
+  const serialized = serializeJsonLd(value);
+  expect(serialized).not.toContain("<");
+  expect(serialized).toContain(String.raw`\u003c/script>`);
+  expect(JSON.parse(serialized)).toEqual(value);
 });

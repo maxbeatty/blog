@@ -7,15 +7,20 @@ export function prefersMarkdown(accept = "") {
       const quality = parameters.find((value) => value.trim().startsWith("q="));
       return { type, q: quality ? Number(quality.trim().slice(2)) : 1 };
     });
-  const markdown = Math.max(
-    0,
-    ...types.filter(({ type }) => type === "text/markdown").map(({ q }) => q),
+  const qualityFor = (mediaType) => {
+    for (const range of [mediaType, "text/*", "*/*"]) {
+      const matches = types.filter(({ type }) => type === range);
+      if (matches.length) return Math.max(0, ...matches.map(({ q }) => q));
+    }
+    return 0;
+  };
+  const explicitlyRequested = types.some(
+    ({ type, q }) => type === "text/markdown" && q > 0,
   );
-  const html = Math.max(
-    0,
-    ...types.filter(({ type }) => type === "text/html").map(({ q }) => q),
+  return (
+    explicitlyRequested &&
+    qualityFor("text/markdown") >= qualityFor("text/html")
   );
-  return markdown > 0 && markdown >= html;
 }
 
 export default {
