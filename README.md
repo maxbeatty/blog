@@ -68,3 +68,30 @@ Build the site:
 ```sh
 npm run build
 ```
+
+## Agent access
+
+The homepage has a Markdown twin at `/index.md` and guidance at `/llms.txt`.
+The Cloudflare Worker negotiates the homepage with `Accept: text/markdown`,
+serves Markdown errors with HTTP 404, and sets `Vary: Accept` for both representations.
+HTML pages and media remain static Astro assets. Run the Worker locally to test
+production routing (Astro preview does not run the Worker):
+
+```sh
+npm run build
+npx wrangler dev --local --port 8787
+node scripts/check-agentic.mjs
+```
+
+After the normal Cloudflare deployment, verify public responses with:
+
+```sh
+node scripts/check-agentic.mjs https://maxbeatty.com
+```
+
+Then rescan Is Agentic and Ora, checking the scan timestamp to avoid comparing a
+cached report. Baseline on October 17, 2026: Is Agentic 63/100, Ora 39/100.
+Business API, authentication, payment, MCP, and Organization-address checks are
+outside this personal publication's scope. Do not invent those services or
+identity details to satisfy a score. Sitemap modification dates should only be
+added when an accurate content modification date is available.

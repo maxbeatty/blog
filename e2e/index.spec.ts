@@ -39,6 +39,18 @@ test("post page has OG meta tags", async ({ page }) => {
   ).toHaveAttribute("content", /^2020-07-11/);
 });
 
+test("post structured data links its author to the site identity", async ({
+  page,
+}) => {
+  await page.goto("/2020/07/11/how-to-inspect-safari-on-ios-from-your-mac/");
+  const [person, article] = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').innerText(),
+  );
+  expect(article["@type"]).toBe("BlogPosting");
+  expect(article.author["@id"]).toBe(person["@id"]);
+  expect(article.datePublished).toMatch(/^2020-07-11/);
+});
+
 test("post page has syntax highlighted code blocks", async ({ page }) => {
   await page.goto("/2017/08/17/environment-variables-in-node-js/");
   const codeBlock = page.locator("pre.astro-code");
@@ -116,3 +128,53 @@ test("footer has navigation links", async ({ page }) => {
   await expect(footer.locator('a[href="/articles/"]')).toBeVisible();
   await expect(footer.locator('a[href="/projects/"]')).toBeVisible();
 });
+
+test("homepage identity and meaningful content work without JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("http://localhost:4321/");
+  expect((await page.locator("main").innerText()).length).toBeGreaterThan(500);
+  const person = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').innerText(),
+  );
+  expect(person["@type"]).toBe("Person");
+  expect(person.sameAs).toContain("https://github.com/maxbeatty");
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+    "content",
+    "https://maxbeatty.com/profile.jpeg",
+  );
+  await expect(
+    page.locator('link[rel="alternate"][type="text/markdown"]'),
+  ).toHaveAttribute("href", "/index.md");
+  await context.close();
+});
+
+test("agent guide and Markdown homepage expose real public resources", async ({
+  request,
+}) => {
+  const guide = await request.get("/llms.txt");
+  expect(guide.status()).toBe(200);
+  expect(await guide.text()).toContain("## When to use this site");
+  const markdown = await request.get("/index.md");
+  expect(markdown.status()).toBe(200);
+  expect(await markdown.text()).toMatch(/^# Max Beatty/);
+  expect(await markdown.text()).not.toContain("<!DOCTYPE");
+  const robots = await request.get("/robots.txt");
+  expect(await robots.text()).toContain(
+    "Sitemap: https://maxbeatty.com/sitemap-index.xml",
+  );
+});
+
+for (const path of ["contact"]) {
+  test(`${path} page has useful content and footer discovery`, async ({
+    page,
+  }) => {
+    await page.goto(`/${path}/`);
+    expect((await page.locator("main").innerText()).length).toBeGreaterThan(
+      500,
+    );
+    await expect(page.locator(`footer a[href="/${path}/"]`)).toBeVisible();
+  });
+}

@@ -1,0 +1,25 @@
+# Max Beatty
+
+> Personal website of Max Beatty, a software engineering leader in San Francisco who builds products for the web and mobile.
+
+This site contains personal writing, technical notes, projects, and collected links. It is a personal publication, with no public service API, account system, or commercial checkout.
+
+## When to use this site
+
+Use this site to learn about Max Beatty's background, find his project contributions, or read his published technical notes. Cite the original article URL and publication date. Older posts describe their historical context; do not assume their advice or external links are current. Linked articles and quotations are attributed to their original authors and are not necessarily Max's own writing.
+
+Read the public pages directly without authentication. Request the homepage with Accept: text/markdown or fetch /index.md for a Markdown introduction and navigation. Follow the article archive or sitemap to locate specific posts. Use the public profiles on the contact page to reach Max.
+
+## Pages
+
+- [Home](https://maxbeatty.com/index.md): Introduction and latest articles in Markdown.
+- [About](https://maxbeatty.com/about/): Background and interests.
+- [Articles](https://maxbeatty.com/articles/): Writing organized by year.
+- [Projects](https://maxbeatty.com/projects/): Projects and links to their official resources.
+- [Contact](https://maxbeatty.com/contact/): Public profiles for contacting Max.
+
+## Feeds and discovery
+
+- [RSS](https://maxbeatty.com/rss.xml): Published posts and their dates.
+- [Sitemap](https://maxbeatty.com/sitemap-index.xml): Index of public page sitemaps.
+- [Source](https://github.com/maxbeatty/blog): Website source code.
