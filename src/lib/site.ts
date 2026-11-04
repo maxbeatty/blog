@@ -1,10 +1,10 @@
 export const description =
-  "Max Beatty is a software engineering leader in San Francisco who designs and builds products for the web and mobile.";
+  "Max Beatty is a product-minded software engineer building zero-to-one products, developer platforms, and financial systems.";
 
 export const introduction = [
-  "I'm an engineering leader based in San Francisco. I enjoy wearing many hats to design and build products for the web and mobile from scratch.",
-  "This is my personal website and archive of writing, projects, and links collected over the years. My work spans JavaScript, developer tools, payments, and product engineering, including Pool, Cash App Pay, Square's Web Payments SDK, and dotenv.",
-  "Browse the articles for technical notes and things I've found interesting, explore the projects for work I've contributed to, or visit the about page for more about me. Older posts reflect their publication date; linked resources and technical advice may have changed since then.",
+  "I'm a product-minded software engineer with 15+ years of experience building zero-to-one products and scaling them into production. I pair hands-on technical depth with engineering leadership to ship products, developer platforms, and complex financial systems.",
+  "I'm currently the Engineering Lead at Pool, where I built the banking platform from the ground up and an OAuth-secured MCP platform that lets AI agents safely access financial data and move money. Before that, I was a founding engineer at Browserbase and a tech lead at Block, where I architected Square's Web Payments SDK and led Pay Kit for Cash App Pay. I also maintained dotenv for seven years.",
+  "This site is an archive of my writing, projects, and links collected over the years. Older posts reflect their publication date; linked resources and technical advice may have changed since then.",
 ];
 
 export const person = {
@@ -13,6 +13,12 @@ export const person = {
   "@id": "https://maxbeatty.com/#person",
   name: "Max Beatty",
   description,
+  jobTitle: "Engineering Lead",
+  worksFor: {
+    "@type": "Organization",
+    name: "Pool",
+    url: "https://poolmoney.com/",
+  },
   url: "https://maxbeatty.com/",
   image: "https://maxbeatty.com/profile.jpeg",
   sameAs: [

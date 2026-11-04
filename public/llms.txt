@@ -1,6 +1,6 @@
 # Max Beatty
 
-> Personal website of Max Beatty, a software engineering leader in San Francisco who builds products for the web and mobile.
+> Personal website of Max Beatty, a product-minded software engineer in San Francisco who builds zero-to-one products, developer platforms, and financial systems.
 
 This site contains personal writing, technical notes, projects, and collected links. It is a personal publication, with no public service API, account system, or commercial checkout.
 
