@@ -40,7 +40,7 @@
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
-    "@playwright/test": "^1.65.0",
+    "@playwright/test": "^1.65.1",
     "cspell": "^10.4.1",
     "markdownlint-cli2": "^0.24.1",
     "prettier": "^3.10.1",
