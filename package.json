@@ -45,7 +45,7 @@
     "markdownlint-cli2": "^0.24.1",
     "prettier": "^3.10.1",
     "prettier-plugin-packagejson": "^3.1.0",
-    "vitest": "^5.1.0",
+    "vitest": "^5.1.1",
     "wrangler": "^4.161.0"
   }
 }
